@@ -25,7 +25,8 @@ class AuthController extends Controller
           $fields = $request -> validate([
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
-            'address'=>'nullable|string',
+            'street_address'=>'nullable|string',
+            'parish' => 'nullable|string',
             'phone'=>'nullable|string',
             'password'=>'required|string',
             'role'=>'required|string',
@@ -36,7 +37,8 @@ class AuthController extends Controller
         $user = User::create([
             'name'=> $fields['name'],
             'email' => $fields['email'],
-            'address' => $fields['address'],
+            'street_address' => $fields['street_address'],
+            'parish' => $fields['parish'],
             'phone' => $fields['phone'],
             'password' => bcrypt($fields['password']),
             'role' => $fields['role'],
@@ -105,7 +107,8 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(),[
                 'name' => 'required|string',
                 'email' => 'required|string|unique:users, email'.$request->user()->id,
-                'address'=>'nullable|string',
+                'street_address'=>'nullable|string',
+                'parish' => 'nullable|string',
                 'phone'=>'nullable|string',
                 'company'=>'nullable|string', 
                 'profile_photo'=>'nullable|image:jpeg,jpg,png',
@@ -117,7 +120,8 @@ class AuthController extends Controller
                 $user = User::find($request->user()->id);
                 $user -> name = $request->name;
                 $user -> email = $request->email;
-                $user -> address =$request->address;
+                $user -> street_address =$request->street_address;
+                $user -> parish = $request->parish;
                 $user -> phone = $request->phone;
                 $user -> company = $request->company;
 

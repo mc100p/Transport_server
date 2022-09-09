@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IssuesController;
 use App\Http\Controllers\PersonnelRatingsController;
@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/update/user/{id}', [AuthController::class,'update']);
     Route::delete('/deleteProfilePhoto/user/{id}', [AuthController::class,'deleteProfilePhoto']);  
     Route::delete('delete/user/{id}', [AuthController::class,'destroy']);
+    Route::post('/order', [OrderController::class, 'store']);
+    Route::get('/order', [OrderController::class, 'index']);
 
 });
 
