@@ -23,17 +23,12 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
-// Route::get('/users', function(Request $request){
-//     return $request::all();
-// });
-
-
-
-
 //Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/issues', [IssuesController::class, 'store']);
     Route::get('/issues', [IssuesController::class, 'index']);
+    Route::post('/update/issues/{id}', [IssuesController::class, 'update']);
+    Route::delete('delete/issues/user/{id}', [IssuesController::class, 'destroy']);
     Route::post('/personnelReviews', [PersonnelRatingsController::class, 'store']);
     Route::get('/personnelReviews', [PersonnelRatingsController::class, 'index']);
     Route::post('/update/personnelReviews/{id}', [PersonnelRatingsController::class,'update']);
@@ -44,8 +39,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::delete('/deleteProfilePhoto/user/{id}', [AuthController::class,'deleteProfilePhoto']);  
     Route::delete('delete/user/{id}', [AuthController::class,'destroy']);
     Route::post('/order', [OrderController::class, 'store']);
+    Route::get('/order/search/{id}', [OrderController::class, 'show']);
     Route::get('/order', [OrderController::class, 'index']);
-
+    Route::delete('delete/order/user/{id}', [OrderController::class, 'destroy']);
+    Route::post('update/order/user/{id}', [OrderController::class, 'update']);
 });
 
 

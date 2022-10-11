@@ -33,12 +33,12 @@ return new class extends Migration
             $table->string('fragility');
             $table->string('item_name');
             $table->string('item_payment_status');
-            $table->decimal('item_height');
-            $table->decimal('item_width');
+            $table->decimal('item_height')->nullable();
+            $table->decimal('item_width')->nullable();
             $table->decimal('item_weight')->nullable();
             $table->string('item_description')->nullable();
             $table->string('ideal_vehicle');
-            $table->string('estimated_delivery_time')->nullable();
+            $table->timestamp('estimated_delivery_time')->nullable();
         });
     }
 
