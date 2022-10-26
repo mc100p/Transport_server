@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/order', [OrderController::class, 'index']);
     Route::delete('delete/order/user/{id}', [OrderController::class, 'destroy']);
     Route::post('update/order/user/{id}', [OrderController::class, 'update']);
+    Route::delete('/deleteDeliveryPhoto/user/{id}', [OrderController::class,'deleteDeliveryPhoto']);
 });
 
 
